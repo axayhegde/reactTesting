@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+    window.users =  [
+        {
+            name: 'Akshay',
+            id: 1,
+            followers: [2, 3]
+        },
+
+        {
+            name: 'Rohit',
+            id: 2,
+            followers: [3]
+        },
+
+        {
+            name: 'Rohan',
+            id: 3,
+            followers: [1, 2]
+        }
+
+    ];
+    function Followers({followers}) {
+
+        return (<div>{followers.map((follower) => {
+            return <small key={follower}>{follower}</small>
+        })}
+        </div>)
+
+    }
+    function ConstructFollowers({user, ids}){
+        console.log(ids);
+
+    }
+
+    function User({users}) {
+
+        return <div>{users.map((user) => <div key={user.id}>{user.name}<ConstructFollowers user={users} ids={users.followers}/></div>
+        )}</div>
+
+    }
+
+    function App(){
+        return <User users={window.users}/>
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+</head>
+<body>
+
+
+<div id="wrapper"></div>
+
+
+<script src="test.js" type="text/babel"></script>
+<script type="text/babel">
+
+    function UserComponent(props) {
+        return (<p>Name: {props.users.name}, Weight: {props.users.weight}</p>)
+    }
+
+    function FollowersComponent(props){
+        return (<p>{props.users.followers}</p>)
+    }
+
+    function WrapperComponent(props){
+        return (<div className="wrapper"><UserComponent users={props.users}/>  <FollowersComponent users={props.users}/></div>)
+    }
+
+    let allUsers = [];
+    for(let users of users){
+        allUsers.push(<WrapperComponent users={users} />);
+    }
+    ReactDOM.render(allUsers, document.getElementById('wrapper'));
+
+
+</script>
+</body>
